@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0908;
+  --foreground: #f4efe6;
+  --gold: #f5c518;
+  --gold-soft: #ffe58a;
+  --brand: #dc1f32;
+  --surface: #141311;
+  --muted: #a8a29e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-brand: var(--brand);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-poppins);
+  --shadow-glow: 0 0 28px rgba(245, 197, 24, 0.35);
+  --animate-glow: glow-pulse 2.2s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 35%, transparent);
+  color: #fff8e7;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    box-shadow: 0 0 6px 1px rgba(245, 197, 24, 0.35);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px 4px rgba(245, 197, 24, 0.9);
+  }
+}
+
+.texture-dark {
+  background-color: #0a0908;
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(245, 197, 24, 0.14), transparent 58%),
+    radial-gradient(ellipse 45% 35% at 92% 18%, rgba(220, 31, 50, 0.1), transparent 52%),
+    radial-gradient(ellipse 40% 30% at 8% 70%, rgba(245, 197, 24, 0.05), transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
 }
