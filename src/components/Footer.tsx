@@ -65,7 +65,8 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-gold"
               >
-                <Phone className="h-4 w-4 text-brand" />
+                {/* Corrigido de text-brand para text-gold */}
+                <Phone className="h-4 w-4 text-gold" />
                 {SITE.phoneDisplay}
               </a>
             </li>
@@ -76,7 +77,8 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-start gap-2 transition-colors duration-300 hover:text-gold"
               >
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                {/* Corrigido de text-brand para text-gold */}
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{SITE.address}</span>
               </a>
             </li>
@@ -90,7 +92,8 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-stone-300">
             {SITE.hours.map((slot) => (
               <li key={slot.days} className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                {/* Corrigido de text-brand para text-gold */}
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>
                   <span className="block text-foreground">{slot.days}</span>
                   {slot.time}
@@ -116,10 +119,21 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Adicionada a assinatura de desenvolvimento no rodapé */}
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-stone-500 sm:px-6 sm:text-left">
-          © {new Date().getFullYear()} {SITE.fullName}. Todos os direitos reservados.
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 py-5 text-xs text-stone-500 sm:flex-row sm:px-6">
+          <p className="text-center sm:text-left">
+            © {new Date().getFullYear()} {SITE.fullName}. Todos os direitos reservados.
+          </p>
+          <a 
+            href="#" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="mt-2 text-stone-600 transition-colors duration-300 hover:text-stone-400 sm:mt-0"
+          >
+            Desenvolvido por João França
+          </a>
+        </div>
       </div>
     </footer>
   );

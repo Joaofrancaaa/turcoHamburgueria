@@ -62,23 +62,28 @@ export default function Header() {
             Fazer Pedido
           </a>
 
+          {/* MUDANÇA: Reduzido para duration-200 e adicionado active:scale-95 para clique instantâneo */}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-gold transition-all duration-300 hover:scale-105 hover:border-gold/60 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-gold transition-all duration-200 active:scale-95 md:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {/* MUDANÇA: Wrapper para rotacionar o ícone e dar mais fluidez visual */}
+            <div className={`transition-transform duration-200 ease-in-out ${open ? "rotate-90" : "rotate-0"}`}>
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </div>
           </button>
         </div>
       </div>
 
+      {/* MUDANÇA: Removido o backdrop-blur, alterado para bg-zinc-950, ajustado para duration-200 ease-out */}
       <div
         id="menu-mobile"
-        className={`overflow-hidden border-t border-zinc-800/50 bg-black/80 backdrop-blur-md transition-all duration-300 md:hidden ${
-          open ? "max-h-96 opacity-100" : "max-h-0 border-t-transparent opacity-0"
+        className={`absolute left-0 top-full w-full border-b border-zinc-800/50 bg-zinc-950 shadow-2xl transition-all duration-300 ease-out md:hidden ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
         }`}
       >
         <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
@@ -90,7 +95,7 @@ export default function Header() {
               {...("external" in link && link.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              className="inline-flex items-center gap-2 rounded-lg px-3 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-200 transition-all duration-300 hover:bg-white/5 hover:text-gold"
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-200 transition-all duration-200 hover:bg-white/5 hover:text-gold"
             >
               {link.label}
               {"external" in link && link.external ? (
@@ -103,7 +108,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center justify-center rounded-full bg-gold px-5 py-3 font-display text-xs font-bold uppercase tracking-[0.16em] text-zinc-950 transition-all duration-300 hover:scale-105 hover:bg-gold-soft"
+            className="mt-2 inline-flex items-center justify-center rounded-full bg-gold px-5 py-3 font-display text-xs font-bold uppercase tracking-[0.16em] text-zinc-950 transition-all duration-200 active:scale-95"
           >
             Fazer Pedido
           </a>
