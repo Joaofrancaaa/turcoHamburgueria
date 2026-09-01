@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { Beer, ChefHat, Sparkles } from "lucide-react";
+import { Beer, ChefHat, Sparkles, Tag } from "lucide-react";
 
 // 1. COMPONENTE DE VÍDEO INTELIGENTE (LAZY VIDEO)
 // Ele pausa sozinho quando sai da tela para economizar memória e bateria
@@ -58,6 +58,7 @@ type ExperienceCard = {
   imageNote: string;
   className: string;
   mediaClassName?: string;
+  badge?: string;
 };
 
 // 2. CONFIGURAÇÃO DOS CARDS
@@ -90,18 +91,21 @@ const CARDS: ExperienceCard[] = [
     imageNote: "VÍDEO REAL: salão da Turco vertical.",
     // Aumentamos a altura mínima para o vídeo vertical ficar bem imponente,
     // e o items-start vai permitir que ele fique desalinhado com o do Chopp sem quebrar o layout
-    className: "md:col-span-3 min-h-[550px]", 
+    className: "md:col-span-3 min-h-[500px]", 
     mediaClassName: "brightness-150"
   },
   {
     title: "Chopp Brahma",
     description:
-      "O par perfeito da chapa quente. Estupidamente gelado com 50% OFF às quartas e sábados.",
+      "Estupidamente gelado. O par perfeito da chapa quente para acompanhar a noite.",
     mediaUrl:
-      "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=1200&q=80",
+      "/chop.jpg",
     mediaType: "image",
     imageNote: "FOTO REAL: chopp Brahma servido no balcão da casa.",
-    className: "md:col-span-3 min-h-[300px]", // Este ficará mais curto que o vídeo ao lado
+    // MUDANÇA: Mais largo e adicionado o badge da promoção
+    className: "md:col-span-3 min-h-[500px]", 
+    badge: "50% OFF Quartas e Sábados",
+    mediaClassName: "brightness-150",
   },
 ];
 
@@ -151,7 +155,14 @@ export default function Experience() {
                   }`}
                 />
               )}
-
+              {card.badge && (
+                <div className="absolute top-5 right-5 z-20 animate-pulse rounded-full bg-red-600 px-3 py-1.5 flex items-center gap-1.5 shadow-lg shadow-red-900/50">
+                  <Tag className="h-3.5 w-3.5 text-white" />
+                  <span className="font-display text-[11px] font-bold uppercase tracking-wider text-white">
+                    {card.badge}
+                  </span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
 
               <div className="relative flex h-full min-h-[inherit] flex-col justify-end p-6 sm:p-8 text-shadow-sm">
@@ -167,16 +178,27 @@ export default function Experience() {
         </div>
 
         {/* Footer Bar */}
-        <div className="mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md px-6 py-5 text-sm text-stone-200">
-          <span className="inline-flex items-center gap-2">
-            <ChefHat className="h-5 w-5 text-gold" />
-            Selagem na manteiga de leite e de bacon
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Beer className="h-5 w-5 text-gold" />
-            Chopp Brahma direto da chopeira
-          </span>
-        </div>
+        <div className="mt-8 overflow-hidden border-x border-b border-white/10 bg-zinc-900">
+  <div className="h-[2px] bg-gradient-to-r from-gold/0 via-gold to-gold/0" />
+  <div className="flex flex-col sm:flex-row">
+    <div className="flex flex-1 items-center gap-4 border-b border-white/10 px-6 py-5 sm:border-b-0 sm:border-r">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-gold/40 text-gold">
+        <ChefHat className="h-4 w-4" strokeWidth={1.75} />
+      </span>
+      <p className="text-sm leading-relaxed text-zinc-300">
+        Selagem na manteiga de leite e de bacon
+      </p>
+    </div>
+    <div className="flex flex-1 items-center gap-4 px-6 py-5">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-gold/40 text-gold">
+        <Beer className="h-4 w-4" strokeWidth={1.75} />
+      </span>
+      <p className="text-sm leading-relaxed text-zinc-300">
+        Chopp Brahma direto da chopeira, sempre gelado
+      </p>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );
