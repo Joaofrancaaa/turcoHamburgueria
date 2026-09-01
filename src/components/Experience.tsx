@@ -141,6 +141,7 @@ export default function Experience() {
                   src={card.mediaUrl}
                   alt={card.title}
                   fill
+                  priority
                   sizes="(max-width: 768px) 100vw, 50vw"
                   data-photo-hint={card.imageNote}
                   className={`object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${

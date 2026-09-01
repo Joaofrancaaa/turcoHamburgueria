@@ -41,17 +41,6 @@ export default function Hero() {
     >
       <StringLights />
 
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
-
       <div className="mx-auto grid w-full max-w-6xl items-center gap-8 px-4 sm:gap-12 sm:px-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           {/* Diminuído o padding, fonte e margem inferior no mobile */}
