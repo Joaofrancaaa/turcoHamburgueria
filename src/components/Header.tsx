@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
 import { TurcoLogo } from "@/components/TurcoLogo";
+import { SITE } from "@/utils/site";
 import { getWhatsAppUrl } from "@/utils/whatsapp";
 
 const NAV_LINKS = [
   { href: "#menu", label: "Menu" },
+  { href: SITE.cardapioPdf, label: "Cardápio", external: true },
   { href: "#sobre", label: "Sobre" },
   { href: "#localizacao", label: "Localização" },
 ] as const;
@@ -37,9 +39,15 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-300 transition-all duration-300 hover:text-gold"
+              {...("external" in link && link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="inline-flex items-center gap-1.5 font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-300 transition-all duration-300 hover:text-gold"
             >
               {link.label}
+              {"external" in link && link.external ? (
+                <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+              ) : null}
             </a>
           ))}
         </nav>
@@ -70,7 +78,7 @@ export default function Header() {
       <div
         id="menu-mobile"
         className={`overflow-hidden border-t border-zinc-800/50 bg-black/80 backdrop-blur-md transition-all duration-300 md:hidden ${
-          open ? "max-h-80 opacity-100" : "max-h-0 border-t-transparent opacity-0"
+          open ? "max-h-96 opacity-100" : "max-h-0 border-t-transparent opacity-0"
         }`}
       >
         <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
@@ -79,9 +87,15 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-200 transition-all duration-300 hover:bg-white/5 hover:text-gold"
+              {...("external" in link && link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-stone-200 transition-all duration-300 hover:bg-white/5 hover:text-gold"
             >
               {link.label}
+              {"external" in link && link.external ? (
+                <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+              ) : null}
             </a>
           ))}
           <a

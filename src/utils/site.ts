@@ -14,6 +14,8 @@ export const SITE = {
   facebookUrl: "https://facebook.com/turcohamburgueria",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Turco+Hamburgueria+Parque+Santa+Rita+Goi%C3%A2nia",
+  /** Coloque o PDF em public/cardapio.pdf */
+  cardapioPdf: "/cardapio.pdf",
   hours: [
     { days: "Terça a domingo", time: "18h – 23h30" },
     { days: "Segunda-feira", time: "Fechado" },
